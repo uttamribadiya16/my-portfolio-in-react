@@ -13,6 +13,7 @@ import { About } from './components/pages/About';
 import { Projects } from './components/pages/Projects';
 import { Contact } from './components/pages/Contact';
 import { Profile } from './components/pages/Profile';
+import { Github } from './components/pages/Github';
 import { ManageThemes } from './components/pages/ManageThemes';
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/github" element={<Github />} />
                   <Route path="/themes" element={<ManageThemes />} />
                 </Routes>
               </MainContent>

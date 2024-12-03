@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronRight, FileJson, Github } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
 
-// Custom file type icons to match VS Code
 const FileReactIcon = () => (
   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 13.5C12.8284 13.5 13.5 12.8284 13.5 12C13.5 11.1716 12.8284 10.5 12 10.5C11.1716 10.5 10.5 11.1716 10.5 12C10.5 12.8284 11.1716 13.5 12 13.5Z" fill="#61DAFB"/>
@@ -26,29 +26,36 @@ const FileCssIcon = () => (
 
 const FileJsIcon = () => (
   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 3h18v18H3V3z" fill="#F7DF1E"/>
-    <path d="M15.5 15.5c.5.8 1.1 1.3 2.2 1.3 1 0 1.6-.5 1.6-1.2 0-.8-.6-1.1-1.6-1.6l-.6-.2c-1.6-.7-2.7-1.5-2.7-3.3 0-1.6 1.2-2.9 3.1-2.9 1.4 0 2.3.5 3 1.7l-1.6 1c-.4-.6-.7-.9-1.4-.9-.6 0-1 .4-1 .9 0 .6.4.9 1.3 1.3l.6.2c1.9.8 3 1.6 3 3.5 0 2-1.5 3-3.6 3-2 0-3.3-.9-3.9-2.1l1.6-.9zM8.3 15.6c.3.6.7.8 1.3.8.7 0 1.1-.3 1.1-1.3v-7h2v7.1c0 2.1-1.2 3-3 3-1.6 0-2.5-.8-3-1.8l1.6-.8z" fill="#000"/>
+    <rect x="3" y="3" width="18" height="18" rx="2" fill="#F7DF1E"/>
+    <path d="M12 17.5c.5.8 1.1 1.3 2.2 1.3 1 0 1.6-.5 1.6-1.2 0-.8-.6-1.1-1.6-1.6l-.6-.2c-1.6-.7-2.7-1.5-2.7-3.3 0-1.6 1.2-2.9 3.1-2.9 1.4 0 2.3.5 3 1.7l-1.6 1c-.4-.6-.7-.9-1.4-.9-.6 0-1 .4-1 .9 0 .6.4.9 1.3 1.3l.6.2c1.9.8 3 1.6 3 3.5 0 2-1.5 3-3.6 3-2 0-3.3-.9-3.9-2.1l1.6-.9zM8.3 15.6c.3.6.7.8 1.3.8.7 0 1.1-.3 1.1-1.3v-7h2v7.1c0 2.1-1.2 3-3 3-1.6 0-2.5-.8-3-1.8l1.6-.8z" fill="#000"/>
   </svg>
 );
 
 export function FileExplorer() {
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState(true);
+  const { currentTheme } = useTheme();
 
   const files = [
     { name: 'home.jsx', path: '/home', icon: FileReactIcon },
     { name: 'about.html', path: '/about', icon: FileHtmlIcon },
     { name: 'contact.css', path: '/contact', icon: FileCssIcon },
     { name: 'projects.js', path: '/projects', icon: FileJsIcon },
-    { name: 'github.md', path: 'https://github.com', icon: Github, external: true },
+    { name: 'github.md', path: '/github', icon: Github },
     { name: 'package.json', icon: FileJson, disabled: true }
   ];
 
   return (
-    <div className="w-60 bg-[#252526] overflow-y-auto">
-      <div className="p-2 text-gray-400">
+    <div 
+      className="w-60 overflow-y-auto"
+      style={{ backgroundColor: currentTheme.colors.sidebarBackground }}
+    >
+      <div className="p-2" style={{ color: currentTheme.colors.sidebarForeground }}>
         <div 
-          className="flex items-center justify-between p-1 hover:bg-[#2d2d2d] rounded cursor-pointer select-none"
+          className="flex items-center justify-between p-1 rounded cursor-pointer select-none"
+          style={{ 
+            '&:hover': { backgroundColor: currentTheme.colors.tabActiveBackground }
+          }}
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="flex items-center space-x-1">
@@ -62,7 +69,7 @@ export function FileExplorer() {
         </div>
         {isExpanded && (
           <div className="mt-2">
-            <div className="flex items-center space-x-1 p-1 hover:bg-[#2d2d2d] rounded cursor-pointer">
+            <div className="flex items-center space-x-1 p-1 rounded cursor-pointer">
               <ChevronDown className="h-4 w-4" />
               <span className="text-[11px] uppercase tracking-wider">Portfolio</span>
             </div>
@@ -74,8 +81,15 @@ export function FileExplorer() {
                 const content = (
                   <div
                     className={`flex items-center space-x-2 p-1 rounded cursor-pointer transition-colors ${
-                      isActive ? 'bg-[#37373d] text-white' : 'hover:bg-[#2d2d2d] text-gray-400'
-                    } ${file.disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      file.disabled ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
+                    style={{
+                      backgroundColor: isActive ? currentTheme.colors.tabActiveBackground : 'transparent',
+                      color: isActive ? currentTheme.colors.foreground : currentTheme.colors.sidebarForeground,
+                      '&:hover': {
+                        backgroundColor: currentTheme.colors.tabActiveBackground
+                      }
+                    }}
                   >
                     <Icon className="h-4 w-4 flex-shrink-0" />
                     <span className="text-sm truncate">{file.name}</span>
@@ -84,20 +98,6 @@ export function FileExplorer() {
 
                 if (file.disabled) {
                   return <div key={file.name}>{content}</div>;
-                }
-
-                if (file.external) {
-                  return (
-                    <a
-                      key={file.name}
-                      href={file.path}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      {content}
-                    </a>
-                  );
                 }
 
                 return (

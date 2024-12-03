@@ -1,9 +1,8 @@
 import React from 'react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export function TopBar() {
-  return (
-    <div className="h-9 bg-[#252526] flex items-center text-gray-400 text-sm border-b border-[#2d2d2d]">
-      {/* Empty top bar - removed workspace content */}
-    </div>
-  );
+  const { currentTheme } = useTheme();
+  
+  return null;
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { X, Github } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
 
-// Import the same icons from FileExplorer
 const FileReactIcon = () => (
   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 13.5C12.8284 13.5 13.5 12.8284 13.5 12C13.5 11.1716 12.8284 10.5 12 10.5C11.1716 10.5 10.5 11.1716 10.5 12C10.5 12.8284 11.1716 13.5 12 13.5Z" fill="#61DAFB"/>
@@ -26,23 +26,28 @@ const FileCssIcon = () => (
 
 const FileJsIcon = () => (
   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M3 3h18v18H3V3z" fill="#F7DF1E"/>
-    <path d="M15.5 15.5c.5.8 1.1 1.3 2.2 1.3 1 0 1.6-.5 1.6-1.2 0-.8-.6-1.1-1.6-1.6l-.6-.2c-1.6-.7-2.7-1.5-2.7-3.3 0-1.6 1.2-2.9 3.1-2.9 1.4 0 2.3.5 3 1.7l-1.6 1c-.4-.6-.7-.9-1.4-.9-.6 0-1 .4-1 .9 0 .6.4.9 1.3 1.3l.6.2c1.9.8 3 1.6 3 3.5 0 2-1.5 3-3.6 3-2 0-3.3-.9-3.9-2.1l1.6-.9zM8.3 15.6c.3.6.7.8 1.3.8.7 0 1.1-.3 1.1-1.3v-7h2v7.1c0 2.1-1.2 3-3 3-1.6 0-2.5-.8-3-1.8l1.6-.8z" fill="#000"/>
+    <rect x="3" y="3" width="18" height="18" rx="2" fill="#F7DF1E"/>
+    <path d="M12 17.5c.5.8 1.1 1.3 2.2 1.3 1 0 1.6-.5 1.6-1.2 0-.8-.6-1.1-1.6-1.6l-.6-.2c-1.6-.7-2.7-1.5-2.7-3.3 0-1.6 1.2-2.9 3.1-2.9 1.4 0 2.3.5 3 1.7l-1.6 1c-.4-.6-.7-.9-1.4-.9-.6 0-1 .4-1 .9 0 .6.4.9 1.3 1.3l.6.2c1.9.8 3 1.6 3 3.5 0 2-1.5 3-3.6 3-2 0-3.3-.9-3.9-2.1l1.6-.9zM8.3 15.6c.3.6.7.8 1.3.8.7 0 1.1-.3 1.1-1.3v-7h2v7.1c0 2.1-1.2 3-3 3-1.6 0-2.5-.8-3-1.8l1.6-.8z" fill="#000"/>
   </svg>
 );
 
 export function Tabs() {
   const location = useLocation();
+  const { currentTheme } = useTheme();
+  
   const tabs = [
     { name: 'home.jsx', path: '/home', icon: FileReactIcon },
     { name: 'about.html', path: '/about', icon: FileHtmlIcon },
     { name: 'contact.css', path: '/contact', icon: FileCssIcon },
     { name: 'projects.js', path: '/projects', icon: FileJsIcon },
-    { name: 'github.md', path: 'https://github.com', icon: Github, external: true },
+    { name: 'github.md', path: '/github', icon: Github }
   ];
 
   return (
-    <div className="h-9 bg-[#1e1e1e] flex items-center px-2">
+    <div 
+      className="flex items-center"
+      style={{ backgroundColor: currentTheme.colors.background }}
+    >
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = location.pathname === tab.path;
@@ -51,18 +56,25 @@ export function Tabs() {
           <Link
             key={tab.path}
             to={tab.path}
-            className={`
-              relative group flex items-center h-[34px] px-3 border-t border-transparent
-              ${isActive ? 'bg-[#1e1e1e] text-white border-t-[#007acc]' : 'bg-[#2d2d2d] text-gray-400 hover:text-white'}
-              ${isActive ? '' : 'hover:bg-[#2d2d2d]'}
-              transition-colors
-            `}
+            className="group flex items-center h-[34px] border-t border-transparent"
+            style={{
+              backgroundColor: isActive ? currentTheme.colors.tabActiveBackground : currentTheme.colors.tabInactiveBackground,
+              color: isActive ? currentTheme.colors.foreground : currentTheme.colors.sidebarForeground,
+              borderTopColor: isActive ? currentTheme.colors.accent : 'transparent'
+            }}
           >
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 px-3">
               <Icon className="h-4 w-4" />
               <span className="text-xs">{tab.name}</span>
             </div>
-            <button className="ml-2 opacity-0 group-hover:opacity-100 hover:bg-[#363636] rounded p-0.5">
+            <button 
+              className="opacity-0 group-hover:opacity-100 rounded p-0.5 mr-1"
+              style={{
+                '&:hover': {
+                  backgroundColor: currentTheme.colors.tabActiveBackground
+                }
+              }}
+            >
               <X className="h-3 w-3" />
             </button>
           </Link>
