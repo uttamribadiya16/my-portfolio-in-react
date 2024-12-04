@@ -15,6 +15,7 @@ import { Contact } from './components/pages/Contact';
 import { Profile } from './components/pages/Profile';
 import { Github } from './components/pages/Github';
 import { ManageThemes } from './components/pages/ManageThemes';
+import { Resume } from './components/pages/Resume';
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/github" element={<Github />} />
                   <Route path="/themes" element={<ManageThemes />} />
+                  <Route path="/resume" element={<Resume />} />
                 </Routes>
               </MainContent>
             </div>

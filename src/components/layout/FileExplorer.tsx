@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronRight, FileJson, Github } from 'lucide-react';
+import { ChevronDown, ChevronRight, FileText, Github } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -42,7 +42,7 @@ export function FileExplorer() {
     { name: 'contact.css', path: '/contact', icon: FileCssIcon },
     { name: 'projects.js', path: '/projects', icon: FileJsIcon },
     { name: 'github.md', path: '/github', icon: Github },
-    { name: 'package.json', icon: FileJson, disabled: true }
+    { name: 'resume.txt', path: '/resume', icon: FileText }
   ];
 
   return (
@@ -80,9 +80,7 @@ export function FileExplorer() {
                 
                 const content = (
                   <div
-                    className={`flex items-center space-x-2 p-1 rounded cursor-pointer transition-colors ${
-                      file.disabled ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
+                    className={`flex items-center space-x-2 p-1 rounded cursor-pointer transition-colors`}
                     style={{
                       backgroundColor: isActive ? currentTheme.colors.tabActiveBackground : 'transparent',
                       color: isActive ? currentTheme.colors.foreground : currentTheme.colors.sidebarForeground,
@@ -95,10 +93,6 @@ export function FileExplorer() {
                     <span className="text-sm truncate">{file.name}</span>
                   </div>
                 );
-
-                if (file.disabled) {
-                  return <div key={file.name}>{content}</div>;
-                }
 
                 return (
                   <Link key={file.name} to={file.path} className="block">

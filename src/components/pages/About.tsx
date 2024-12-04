@@ -6,15 +6,15 @@ export function About() {
   const skills = [
     { 
       category: 'Frontend', 
-      items: ['React', 'TypeScript', 'Next.js', 'Vue.js', 'Tailwind CSS', 'Material-UI']
+      items: ['Angular', 'React', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Bootstrap', 'Material UI']
     },
     { 
       category: 'Backend', 
-      items: ['Node.js', 'Express', 'NestJS', 'MongoDB', 'PostgreSQL', 'Redis']
+      items: ['.NET Core', 'WebAPI', 'MVC', 'C#', 'MS SQL', 'Entity Framework', 'REST APIs']
     },
     { 
       category: 'DevOps & Tools', 
-      items: ['Docker', 'Kubernetes', 'AWS', 'CI/CD', 'Git', 'Linux']
+      items: ['Git', 'Azure DevOps', 'CI/CD', 'Docker', 'Agile/Scrum', 'JIRA', 'Visual Studio']
     }
   ];
 
@@ -23,26 +23,21 @@ export function About() {
       company: "Tech Solutions Inc",
       position: "Senior Full Stack Developer",
       period: "2020 - Present",
-      description: "Leading development of enterprise-scale applications using React and Node.js"
+      description: "Leading development of enterprise applications using Angular, React, and .NET Core"
     },
     {
       company: "Digital Innovations Ltd",
-      position: "Frontend Developer",
+      position: "Full Stack Developer",
       period: "2018 - 2020",
-      description: "Developed responsive web applications using modern JavaScript frameworks"
+      description: "Developed and maintained web applications using Angular and .NET technologies"
     }
   ];
 
   const education = [
     {
-      degree: "Master of Computer Science",
-      school: "Tech University",
+      degree: "Bachelor of Engineering in Computer Science",
+      school: "Gujarat Technological University",
       year: "2018"
-    },
-    {
-      degree: "Bachelor of Computer Science",
-      school: "State University",
-      year: "2016"
     }
   ];
 
@@ -59,8 +54,8 @@ export function About() {
           alt="Profile"
           className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500"
         />
-        <h1 className="text-4xl font-bold text-white mb-4">John Doe</h1>
-        <p className="text-xl text-gray-400 mb-6">Senior Full Stack Developer</p>
+        <h1 className="text-4xl font-bold mb-4">🚀 Full Stack Developer 🌐</h1>
+        <p className="text-xl mb-6 text-gray-400">Specializing in Angular, React, and .NET Core</p>
         <div className="flex justify-center space-x-6">
           <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
             <Github className="w-6 h-6" />
@@ -81,17 +76,43 @@ export function About() {
       </div>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-white mb-6">About Me</h2>
-        <p className="text-gray-300 leading-relaxed">
-          I'm a passionate full-stack developer with over 5 years of experience in building web applications.
-          I specialize in React, Node.js, and cloud technologies. My approach combines technical expertise
-          with a strong focus on user experience and business objectives. I'm constantly learning and
-          exploring new technologies to stay at the forefront of web development.
-        </p>
+        <h2 className="text-2xl font-semibold mb-6">💼 Professional Summary</h2>
+        <div className="space-y-4 text-gray-300 leading-relaxed">
+          <p>
+            Greetings! I'm a skilled Full-Stack Developer with over 5 years of experience in building robust and scalable web applications.
+            My expertise spans across modern frontend frameworks and backend technologies, with a strong focus on delivering high-quality solutions.
+          </p>
+          
+          <div className="space-y-2">
+            <p>🔧 Core Competencies:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Extensive experience with Angular 8+ and React, crafting responsive and intuitive user interfaces</li>
+              <li>Strong backend development skills using .NET Core, MVC, and WebAPI</li>
+              <li>Expertise in database design and optimization with MS SQL</li>
+              <li>Proficient in implementing RESTful APIs and microservices architecture</li>
+              <li>Experience with Agile methodologies and CI/CD practices</li>
+            </ul>
+          </div>
+
+          <p>
+            ⚙️ My approach combines technical expertise with a strong focus on delivering business value. I'm particularly passionate about
+            creating clean, maintainable code and implementing best practices in software development.
+          </p>
+
+          <p>
+            🌐 I stay current with industry trends and continuously expand my skillset to bring innovative solutions to complex problems.
+            My commitment to quality and attention to detail ensures the delivery of robust and scalable applications.
+          </p>
+
+          <p>
+            📬 I'm always open to discussing new projects, technical challenges, or potential collaborations.
+            Let's connect and explore how we can work together to bring your ideas to life!
+          </p>
+        </div>
       </section>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-white mb-6">Skills</h2>
+        <h2 className="text-2xl font-semibold mb-6">🛠️ Technical Skills</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((skillGroup, index) => (
             <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
@@ -109,11 +130,11 @@ export function About() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-white mb-6">Experience</h2>
+        <h2 className="text-2xl font-semibold mb-6">💼 Experience</h2>
         <div className="space-y-6">
           {experiences.map((exp, index) => (
             <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white">{exp.position}</h3>
+              <h3 className="text-xl font-semibold">{exp.position}</h3>
               <p className="text-blue-400">{exp.company}</p>
               <p className="text-gray-400 text-sm mb-3">{exp.period}</p>
               <p className="text-gray-300">{exp.description}</p>
@@ -123,11 +144,11 @@ export function About() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold text-white mb-6">Education</h2>
+        <h2 className="text-2xl font-semibold mb-6">🎓 Education</h2>
         <div className="space-y-4">
           {education.map((edu, index) => (
             <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white">{edu.degree}</h3>
+              <h3 className="text-xl font-semibold">{edu.degree}</h3>
               <p className="text-blue-400">{edu.school}</p>
               <p className="text-gray-400">{edu.year}</p>
             </div>

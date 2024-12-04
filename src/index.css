@@ -8,85 +8,23 @@
 
 @layer base {
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: var(--background);
     color: var(--foreground);
   }
 }
 
-/* VS Code MacOS specific styles */
-.mac-window-controls {
-  display: flex;
-  gap: 8px;
+.bg-grid-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='1' cy='1' r='1'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 30px 30px;
 }
 
-.mac-window-controls button {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  padding: 0;
-  transition: opacity 0.2s;
+.bg-coral-gradient {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
 }
 
-.mac-window-controls .close { background-color: #ff5f56; }
-.mac-window-controls .minimize { background-color: #ffbd2e; }
-.mac-window-controls .maximize { background-color: #27c93f; }
-
-.mac-window-controls button:hover {
-  opacity: 0.8;
+.bg-lime-gradient {
+  background: linear-gradient(135deg, #84cc16 0%, #bef264 100%);
 }
 
-/* Theme-aware styles */
-.theme-bg {
-  background-color: var(--background);
-  color: var(--foreground);
-}
-
-.theme-sidebar {
-  background-color: var(--sidebarBackground);
-  color: var(--sidebarForeground);
-}
-
-.theme-editor {
-  background-color: var(--editorBackground);
-  color: var(--editorForeground);
-}
-
-.theme-tab-active {
-  background-color: var(--tabActiveBackground);
-}
-
-.theme-tab-inactive {
-  background-color: var(--tabInactiveBackground);
-}
-
-.theme-status-bar {
-  background-color: var(--statusBarBackground);
-  color: var(--statusBarForeground);
-}
-
-.theme-button {
-  background-color: var(--buttonBackground);
-  color: var(--buttonForeground);
-}
-
-.theme-button:hover {
-  background-color: var(--buttonHoverBackground);
-}
-
-.theme-border {
-  border-color: var(--borderColor);
-}
-
-.theme-accent {
-  color: var(--accent);
-}
-
-.theme-accent-bg {
-  background-color: var(--accent);
-}
-
-.theme-accent-border {
-  border-color: var(--accent);
-}
+/* Rest of your existing CSS */
