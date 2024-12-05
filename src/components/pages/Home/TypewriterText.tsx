@@ -50,7 +50,7 @@ export function TypewriterText({ text }: TypewriterTextProps) {
         <motion.span
           key={index}
           variants={child}
-          className="text-[#94A3B8] text-xl"
+          className="text-gray-400"
         >
           {letter === " " ? "\u00A0" : letter}
         </motion.span>

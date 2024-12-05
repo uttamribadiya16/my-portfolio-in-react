@@ -10,7 +10,7 @@ export function About() {
     },
     { 
       category: 'Backend', 
-      items: ['.NET Core', 'WebAPI', 'MVC', 'C#', 'MS SQL', 'Entity Framework', 'REST APIs']
+      items: ['.NET Core', 'WebAPI', 'MVC', 'C#', 'MS SQL', 'Entity Framework', 'REST APIs', 'Elastic Search']
     },
     { 
       category: 'DevOps & Tools', 
@@ -18,26 +18,29 @@ export function About() {
     }
   ];
 
-  const experiences = [
+  const courses = [
     {
-      company: "Tech Solutions Inc",
-      position: "Senior Full Stack Developer",
-      period: "2020 - Present",
-      description: "Leading development of enterprise applications using Angular, React, and .NET Core"
+      name: "Angular 8+",
+      url: "https://www.udemy.com/course/the-complete-guide-to-angular-2/"
     },
     {
-      company: "Digital Innovations Ltd",
-      position: "Full Stack Developer",
-      period: "2018 - 2020",
-      description: "Developed and maintained web applications using Angular and .NET technologies"
+      name: "React JS",
+      url: "https://www.udemy.com/course/react-the-complete-guide-incl-redux/"
+    },
+    {
+      name: "ASP.NET Core",
+      url: "https://www.udemy.com/course/complete-aspnet-core-31-and-entity-framework-development/"
+    },
+    {
+      name: "Node JS",
+      url: "https://www.udemy.com/course/the-complete-nodejs-developer-course-2/"
     }
   ];
 
-  const education = [
+  const achievements = [
     {
-      degree: "Bachelor of Engineering in Computer Science",
-      school: "Gujarat Technological University",
-      year: "2018"
+      title: "AZ-204",
+      description: "Microsoft Azure Developer Associate"
     }
   ];
 
@@ -79,35 +82,36 @@ export function About() {
         <h2 className="text-2xl font-semibold mb-6">💼 Professional Summary</h2>
         <div className="space-y-4 text-gray-300 leading-relaxed">
           <p>
-            Greetings! I'm a skilled Full-Stack Developer with over 5 years of experience in building robust and scalable web applications.
-            My expertise spans across modern frontend frameworks and backend technologies, with a strong focus on delivering high-quality solutions.
+            Skilled Full-Stack Developer with 5+ Years of Experience in Angular 8 or React, .NET Core, MVC, WebAPI, and MS SQL.
           </p>
-          
-          <div className="space-y-2">
-            <p>🔧 Core Competencies:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Extensive experience with Angular 8+ and React, crafting responsive and intuitive user interfaces</li>
-              <li>Strong backend development skills using .NET Core, MVC, and WebAPI</li>
-              <li>Expertise in database design and optimization with MS SQL</li>
-              <li>Proficient in implementing RESTful APIs and microservices architecture</li>
-              <li>Experience with Agile methodologies and CI/CD practices</li>
-            </ul>
-          </div>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Proven ability to design, develop, and deliver high-quality web applications using cutting-edge technologies.</li>
+            <li>Extensive experience with Angular 8 or React, .NET Core, MVC, WebAPI, and MS SQL.</li>
+            <li>Strong understanding of object-oriented programming, design patterns, and software development principles.</li>
+            <li>Experience with Agile methodologies and continuous integration/continuous delivery (CI/CD).</li>
+            <li>Excellent problem-solving and analytical skills.</li>
+            <li>Ability to work independently and as part of a team.</li>
+          </ul>
+        </div>
+      </section>
 
-          <p>
-            ⚙️ My approach combines technical expertise with a strong focus on delivering business value. I'm particularly passionate about
-            creating clean, maintainable code and implementing best practices in software development.
-          </p>
-
-          <p>
-            🌐 I stay current with industry trends and continuously expand my skillset to bring innovative solutions to complex problems.
-            My commitment to quality and attention to detail ensures the delivery of robust and scalable applications.
-          </p>
-
-          <p>
-            📬 I'm always open to discussing new projects, technical challenges, or potential collaborations.
-            Let's connect and explore how we can work together to bring your ideas to life!
-          </p>
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-6">🔧 Technical Summary</h2>
+        <div className="space-y-2 text-gray-300">
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Built and maintained a distributed microservices architecture.</li>
+            <li>Maintained the architecture and ensured that it met the needs of the system.</li>
+            <li>Reviewed code to ensure that it met quality standards and adhered to best practices.</li>
+            <li>Mentored junior developers to help them improve their coding skills and become more proficient in best practices.</li>
+            <li>Led a team of developers to successfully complete a significant software project.</li>
+            <li>Successfully coordinated the efforts of the team and ensured that the project met the requirements of the client.</li>
+            <li>Developed a web application that was modular and single-page, using Angular and React.</li>
+            <li>Incorporated responsive design principles to ensure that the application was accessible on a variety of devices.</li>
+            <li>Restructured legacy code to improve its reliability, scalability, and maintainability.</li>
+            <li>Improved the code by removing duplication, making it more modular, and simplifying the overall structure.</li>
+            <li>Improved database performance through query optimization and indexing.</li>
+            <li>Developed an authentication system using the JWT tokens for secure user access.</li>
+          </ul>
         </div>
       </section>
 
@@ -130,27 +134,48 @@ export function About() {
       </section>
 
       <section className="mb-12">
-        <h2 className="text-2xl font-semibold mb-6">💼 Experience</h2>
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
-              <h3 className="text-xl font-semibold">{exp.position}</h3>
-              <p className="text-blue-400">{exp.company}</p>
-              <p className="text-gray-400 text-sm mb-3">{exp.period}</p>
-              <p className="text-gray-300">{exp.description}</p>
-            </div>
+        <h2 className="text-2xl font-semibold mb-6">💼 Work Experience</h2>
+        <div className="bg-[#2d2d2d] rounded-lg p-6">
+          <h3 className="text-xl font-semibold">Technical Lead</h3>
+          <p className="text-blue-400">Maruti Techlabs</p>
+          <p className="text-gray-400 text-sm mb-3">December 2019 - Present</p>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-6">🎓 Education</h2>
+        <div className="bg-[#2d2d2d] rounded-lg p-6">
+          <h3 className="text-xl font-semibold">Bachelor of Engineering in Computer Engineering</h3>
+          <p className="text-blue-400">Marwadi University</p>
+          <p className="text-gray-400">2016 - 2020</p>
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-6">📚 Courses and Certificates</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {courses.map((course, index) => (
+            <a
+              key={index}
+              href={course.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#2d2d2d] rounded-lg p-6 hover:bg-[#363636] transition-colors"
+            >
+              <h3 className="text-xl font-semibold text-blue-400">{course.name}</h3>
+              <p className="text-gray-400 text-sm mt-2">View Certificate →</p>
+            </a>
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-6">🎓 Education</h2>
+        <h2 className="text-2xl font-semibold mb-6">🏆 Achievements</h2>
         <div className="space-y-4">
-          {education.map((edu, index) => (
+          {achievements.map((achievement, index) => (
             <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
-              <h3 className="text-xl font-semibold">{edu.degree}</h3>
-              <p className="text-blue-400">{edu.school}</p>
-              <p className="text-gray-400">{edu.year}</p>
+              <h3 className="text-xl font-semibold text-blue-400">{achievement.title}</h3>
+              <p className="text-gray-300 mt-2">{achievement.description}</p>
             </div>
           ))}
         </div>
