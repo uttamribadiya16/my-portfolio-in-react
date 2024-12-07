@@ -1,30 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-type ThemeType = 'github-dark' | 'dracula' | 'nord' | 'night-owl' | 'monokai';
-
-interface Theme {
-  id: ThemeType;
-  name: string;
-  colors: {
-    background: string;
-    foreground: string;
-    accent: string;
-    sidebarBackground: string;
-    sidebarForeground: string;
-    editorBackground: string;
-    editorForeground: string;
-    tabActiveBackground: string;
-    tabInactiveBackground: string;
-    statusBarBackground: string;
-    statusBarForeground: string;
-    buttonBackground: string;
-    buttonForeground: string;
-    buttonHoverBackground: string;
-    borderColor: string;
-  };
-}
-
-const themes: Record<ThemeType, Theme> = {
+const themes = {
   'github-dark': {
     id: 'github-dark',
     name: 'GitHub Dark',
@@ -36,7 +12,7 @@ const themes: Record<ThemeType, Theme> = {
       sidebarForeground: '#d1d5da',
       editorBackground: '#24292e',
       editorForeground: '#e1e4e8',
-      tabActiveBackground: '#1f2428',
+      tabActiveBackground: '#2c3138',
       tabInactiveBackground: '#24292e',
       statusBarBackground: '#24292e',
       statusBarForeground: '#d1d5da',
@@ -132,16 +108,10 @@ const themes: Record<ThemeType, Theme> = {
   }
 };
 
-interface ThemeContextType {
-  currentTheme: Theme;
-  setTheme: (themeId: ThemeType) => void;
-  availableThemes: Theme[];
-}
+const ThemeContext = createContext(undefined);
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [currentTheme, setCurrentTheme] = useState<Theme>(themes['github-dark']);
+export function ThemeProvider({ children }) {
+  const [currentTheme, setCurrentTheme] = useState(themes['dracula']);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -152,7 +122,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     });
   }, [currentTheme]);
 
-  const setTheme = (themeId: ThemeType) => {
+  const setTheme = (themeId) => {
     setCurrentTheme(themes[themeId]);
   };
 
@@ -174,3 +144,5 @@ export function useTheme() {
   }
   return context;
 }
+
+export default ThemeContext;

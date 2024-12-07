@@ -2,13 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 
-interface NavLinkProps {
-  icon: React.ReactNode;
-  to: string;
-  tooltip: string;
-}
-
-export function NavLink({ icon, to, tooltip }: NavLinkProps) {
+export function NavLink({ icon, to, tooltip }) {
   const location = useLocation();
   const { currentTheme } = useTheme();
   const isActive = location.pathname === to;

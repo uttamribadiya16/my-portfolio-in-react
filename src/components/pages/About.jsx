@@ -2,8 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Globe } from 'lucide-react';
 import profileImage from '../../images/profile.jpeg';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export function About() {
+  const { currentTheme } = useTheme();
   const skills = [
     { 
       category: 'Frontend', 
@@ -56,7 +58,10 @@ export function About() {
         <img
           src={profileImage}
           alt="Profile"
-          className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500"
+          style={{ 
+            borderColor: currentTheme.colors.accent
+         }}
+          className="w-32 h-32 rounded-full mx-auto mb-6 border-4"
         />
         <h1 className="text-4xl font-bold mb-4">🚀 Full Stack Developer 🌐</h1>
         <p className="text-xl mb-6 text-gray-400">Specializing in Angular, React, and .NET Core</p>

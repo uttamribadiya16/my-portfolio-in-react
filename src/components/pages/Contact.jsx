@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export function Contact() {
+  const { currentTheme } = useTheme();
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -27,15 +29,15 @@ export function Contact() {
           <div className="space-y-4">
             <div className="flex items-center space-x-4 text-gray-300">
               <Mail className="w-6 h-6 text-blue-400" />
-              <span>contact@example.com</span>
+              <span>uttamribadiya163098@gmail.com</span>
             </div>
             <div className="flex items-center space-x-4 text-gray-300">
               <Phone className="w-6 h-6 text-blue-400" />
-              <span>+1 (555) 123-4567</span>
+              <span>+91 74056 30123</span>
             </div>
             <div className="flex items-center space-x-4 text-gray-300">
               <MapPin className="w-6 h-6 text-blue-400" />
-              <span>San Francisco, CA</span>
+              <span>Satellite, Ahmedabad, India</span>
             </div>
           </div>
         </motion.div>
