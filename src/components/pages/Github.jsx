@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github as GithubIcon, Star, GitFork, Users, Book } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
+import { GITHUB_TOKEN } from '../../constants';
 
 export function Github() {
   const [stats, setStats] = useState([]);
@@ -15,7 +16,7 @@ export function Github() {
     const fetchData = async () => {
       try {
         const headers = {
-          Authorization: `Bearer `,
+          Authorization: `Bearer ${GITHUB_TOKEN}`,
         };
 
         // Fetch User Data
