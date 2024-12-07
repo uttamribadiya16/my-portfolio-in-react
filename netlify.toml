@@ -1,9 +1,8 @@
 [build]
-  base = "/"
-  publish = "dist"
+  # This should be "build" for a React project, not "dist"
+  publish = "build"
   functions = "functions"
   command = "npm run build"
-
 
 [[redirects]]
   from = "/*"
