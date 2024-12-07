@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { BackgroundElements } from './BackgroundElements';
 import { TypewriterText } from './TypewriterText';
 import { ActionButtons } from './ActionButtons';
+import profileImage from '../../../images/profile.jpeg';
 
 export function Home() {
   return (
@@ -16,7 +17,7 @@ export function Home() {
         className="relative flex flex-col items-center justify-center min-h-[calc(100vh-3rem)] text-center px-4 z-10"
       >
         <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
+          src={profileImage}
           alt="Profile"
           className="w-32 h-32 rounded-full object-cover mb-8 border-4 border-blue-500 shadow-lg"
         />

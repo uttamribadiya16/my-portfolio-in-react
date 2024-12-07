@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Globe } from 'lucide-react';
+import profileImage from '../../images/profile.jpeg';
 
 export function About() {
   const skills = [
@@ -53,27 +54,21 @@ export function About() {
     >
       <div className="mb-12 text-center">
         <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
+          src={profileImage}
           alt="Profile"
           className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-500"
         />
         <h1 className="text-4xl font-bold mb-4">🚀 Full Stack Developer 🌐</h1>
         <p className="text-xl mb-6 text-gray-400">Specializing in Angular, React, and .NET Core</p>
         <div className="flex justify-center space-x-6">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+          <a href="https://github.com/uttamribadiya16" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
             <Github className="w-6 h-6" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+          <a href="https://www.linkedin.com/in/uttam-ribadiya-73156b132/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
             <Linkedin className="w-6 h-6" />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-            <Twitter className="w-6 h-6" />
-          </a>
-          <a href="mailto:contact@example.com" className="text-gray-400 hover:text-white">
+          <a href="mailto:uttamribadiya163098@gmail.com" className="text-gray-400 hover:text-white">
             <Mail className="w-6 h-6" />
-          </a>
-          <a href="https://example.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-            <Globe className="w-6 h-6" />
           </a>
         </div>
       </div>

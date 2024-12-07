@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
+import profileImage from '../../images/profile.jpeg';
 
-const TypewriterText = ({ text }: { text: string }) => {
+const TypewriterText = ({ text }) => {
   const letters = Array.from(text);
   
   const container = {
@@ -56,7 +57,7 @@ const TypewriterText = ({ text }: { text: string }) => {
   );
 };
 
-const BackgroundText = ({ text }: { text: string }) => (
+const BackgroundText = ({ text }) => (
   <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
     <h1 className="text-[20vw] font-bold text-gray-800/5 whitespace-nowrap transform -rotate-12">
       {text}
@@ -85,7 +86,7 @@ export function Home() {
         className="relative flex flex-col items-center justify-center min-h-[calc(100vh-3rem)] text-center px-4 z-10"
       >
         <img
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&h=200&q=80"
+          src={profileImage}
           alt="Profile"
           className="w-32 h-32 rounded-full object-cover mb-8 border-4 border-blue-500 shadow-lg"
         />
@@ -111,7 +112,7 @@ export function Home() {
           className="flex space-x-6"
         >
           <a 
-            href="https://github.com" 
+            href="https://github.com/uttamribadiya16" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-gray-400 hover:text-white transition-colors transform hover:scale-110"
@@ -119,7 +120,7 @@ export function Home() {
             <Github className="w-8 h-8" />
           </a>
           <a 
-            href="https://linkedin.com" 
+            href="https://www.linkedin.com/in/uttam-ribadiya-73156b132/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-gray-400 hover:text-white transition-colors transform hover:scale-110"
@@ -127,7 +128,7 @@ export function Home() {
             <Linkedin className="w-8 h-8" />
           </a>
           <a 
-            href="mailto:contact@example.com" 
+            href="mailto:uttamribadiya163098@gmail.com" 
             className="text-gray-400 hover:text-white transition-colors transform hover:scale-110"
           >
             <Mail className="w-8 h-8" />

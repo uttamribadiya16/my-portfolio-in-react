@@ -1,11 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface TypewriterTextProps {
-  text: string;
-}
-
-export function TypewriterText({ text }: TypewriterTextProps) {
+export function TypewriterText({ text }) {
   const letters = Array.from(text);
   
   const container = {
