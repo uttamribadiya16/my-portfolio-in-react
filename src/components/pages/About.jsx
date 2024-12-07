@@ -13,7 +13,7 @@ export function About() {
     },
     { 
       category: 'Backend', 
-      items: ['.NET Core', 'WebAPI', 'MVC', 'C#', 'MS SQL', 'Entity Framework', 'REST APIs', 'Elastic Search']
+      items: ['.NET Core', 'WebAPI', 'MVC', 'C#', 'MS SQL', 'Entity Framework', 'REST APIs', 'Elastic Search', 'PostgreSQL']
     },
     { 
       category: 'DevOps & Tools', 
@@ -60,7 +60,7 @@ export function About() {
           alt="Profile"
           style={{ 
             borderColor: currentTheme.colors.accent
-         }}
+          }}
           className="w-32 h-32 rounded-full mx-auto mb-6 border-4"
         />
         <h1 className="text-4xl font-bold mb-4">🚀 Full Stack Developer 🌐</h1>
@@ -120,7 +120,12 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skills.map((skillGroup, index) => (
             <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-blue-400 mb-4">{skillGroup.category}</h3>
+              <h3
+               style={{ 
+                color: currentTheme.colors.accent
+              }}
+               className="text-xl font-semibold mb-4">{skillGroup.category}
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {skillGroup.items.map((skill, skillIndex) => (
                   <span key={skillIndex} className="px-3 py-1 bg-[#363636] rounded-full text-gray-300">
@@ -137,7 +142,9 @@ export function About() {
         <h2 className="text-2xl font-semibold mb-6">💼 Work Experience</h2>
         <div className="bg-[#2d2d2d] rounded-lg p-6">
           <h3 className="text-xl font-semibold">Technical Lead</h3>
-          <p className="text-blue-400">Maruti Techlabs</p>
+          <p style={{ 
+                color: currentTheme.colors.accent
+              }}>Maruti Techlabs</p>
           <p className="text-gray-400 text-sm mb-3">December 2019 - Present</p>
         </div>
       </section>
@@ -146,7 +153,9 @@ export function About() {
         <h2 className="text-2xl font-semibold mb-6">🎓 Education</h2>
         <div className="bg-[#2d2d2d] rounded-lg p-6">
           <h3 className="text-xl font-semibold">Bachelor of Engineering in Computer Engineering</h3>
-          <p className="text-blue-400">Marwadi University</p>
+          <p style={{ 
+                color: currentTheme.colors.accent
+              }}>Marwadi University</p>
           <p className="text-gray-400">2016 - 2020</p>
         </div>
       </section>
@@ -162,7 +171,10 @@ export function About() {
               rel="noopener noreferrer"
               className="bg-[#2d2d2d] rounded-lg p-6 hover:bg-[#363636] transition-colors"
             >
-              <h3 className="text-xl font-semibold text-blue-400">{course.name}</h3>
+              <h3 style={{ 
+                color: currentTheme.colors.accent
+              }}
+               className="text-xl font-semibold">{course.name}</h3>
               <p className="text-gray-400 text-sm mt-2">View Certificate →</p>
             </a>
           ))}
@@ -174,7 +186,10 @@ export function About() {
         <div className="space-y-4">
           {achievements.map((achievement, index) => (
             <div key={index} className="bg-[#2d2d2d] rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-blue-400">{achievement.title}</h3>
+              <h3 style={{ 
+                color: currentTheme.colors.accent
+              }}
+               className="text-xl font-semibold">{achievement.title}</h3>
               <p className="text-gray-300 mt-2">{achievement.description}</p>
             </div>
           ))}

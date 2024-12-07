@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 
 export function Contact() {
   const { currentTheme } = useTheme();
+  const [focusedElement, setFocusedElement] = useState(null);
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -28,15 +30,15 @@ export function Contact() {
           
           <div className="space-y-4">
             <div className="flex items-center space-x-4 text-gray-300">
-              <Mail className="w-6 h-6 text-blue-400" />
+              <Mail className="w-6 h-6" style={{ color: currentTheme.colors.accent }} />
               <span>uttamribadiya163098@gmail.com</span>
             </div>
             <div className="flex items-center space-x-4 text-gray-300">
-              <Phone className="w-6 h-6 text-blue-400" />
+              <Phone className="w-6 h-6" style={{ color: currentTheme.colors.accent }} />
               <span>+91 74056 30123</span>
             </div>
             <div className="flex items-center space-x-4 text-gray-300">
-              <MapPin className="w-6 h-6 text-blue-400" />
+              <MapPin className="w-6 h-6" style={{ color: currentTheme.colors.accent }} />
               <span>Satellite, Ahmedabad, India</span>
             </div>
           </div>
@@ -49,32 +51,65 @@ export function Contact() {
           className="space-y-6"
         >
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Name</label>
+            <label 
+              htmlFor="name" 
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Name
+            </label>
             <input
               type="text"
               id="name"
-              className="w-full px-4 py-2 bg-[#2d2d2d] rounded-lg border border-gray-600 text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 bg-[#2d2d2d] rounded-lg border text-white focus:outline-none"
+              onFocus={() => setFocusedElement('name')}
+              onBlur={() => setFocusedElement(null)}
+              style={{
+                borderColor: focusedElement === 'name' ? currentTheme.colors.accent : '#4b5563',
+              }}
             />
           </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+            <label 
+              htmlFor="email" 
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Email
+            </label>
             <input
               type="email"
               id="email"
-              className="w-full px-4 py-2 bg-[#2d2d2d] rounded-lg border border-gray-600 text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 bg-[#2d2d2d] rounded-lg border text-white focus:outline-none"
+              onFocus={() => setFocusedElement('email')}
+              onBlur={() => setFocusedElement(null)}
+              style={{
+                borderColor: focusedElement === 'email' ? currentTheme.colors.accent : '#4b5563',
+              }}
             />
           </div>
           <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
+            <label 
+              htmlFor="message" 
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
+              Message
+            </label>
             <textarea
               id="message"
               rows={4}
-              className="w-full px-4 py-2 bg-[#2d2d2d] rounded-lg border border-gray-600 text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 bg-[#2d2d2d] rounded-lg border text-white focus:outline-none"
+              onFocus={() => setFocusedElement('message')}
+              onBlur={() => setFocusedElement(null)}
+              style={{
+                borderColor: focusedElement === 'message' ? currentTheme.colors.accent : '#4b5563',
+              }}
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors"
+            className="w-full px-6 py-3 text-white rounded-lg font-medium transition-colors"
+            style={{
+              backgroundColor: currentTheme.colors.accent,
+            }}
           >
             Send Message
           </button>

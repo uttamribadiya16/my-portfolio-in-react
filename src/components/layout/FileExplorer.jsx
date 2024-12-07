@@ -31,6 +31,27 @@ const FileJsIcon = () => (
   </svg>
 );
 
+const GithubIcon = () => (
+  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="18" height="18" rx="2" fill="#181717" />
+    <path
+      d="M12 2C6.48 2 2 6.48 2 12c0 4.41 2.87 8.15 6.84 9.49.5.09.66-.22.66-.49v-1.74c-2.78.61-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.36 1.08 2.94.83.09-.65.35-1.08.64-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.28.1-2.67 0 0 .84-.27 2.75 1.03A9.49 9.49 0 0 1 12 6.84a9.49 9.49 0 0 1 2.5.33c1.91-1.3 2.75-1.03 2.75-1.03.55 1.39.2 2.41.1 2.67.64.7 1.03 1.59 1.03 2.68 0 3.84-2.33 4.69-4.55 4.94.36.31.68.92.68 1.86v2.76c0 .27.16.59.68.49A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z"
+      fill="#fff"
+    />
+  </svg>
+);
+
+const ResumeIcon = () => (
+  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="18" height="18" rx="2" fill="#4CAF50" />
+    <path
+      d="M8 5h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM9.5 8a.5.5 0 1 0 0 1h5a.5.5 0 1 0 0-1h-5zm0 3a.5.5 0 1 0 0 1h5a.5.5 0 1 0 0-1h-5zm0 3a.5.5 0 1 0 0 1h5a.5.5 0 1 0 0-1h-5zm0 3a.5.5 0 1 0 0 1h5a.5.5 0 1 0 0-1h-5z"
+      fill="#fff"
+    />
+  </svg>
+);
+
+
 export function FileExplorer() {
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState(true);
@@ -41,8 +62,8 @@ export function FileExplorer() {
     { name: 'about.html', path: '/about', icon: FileHtmlIcon },
     { name: 'contact.css', path: '/contact', icon: FileCssIcon },
     { name: 'projects.js', path: '/projects', icon: FileJsIcon },
-    { name: 'github.md', path: '/github', icon: Github },
-    { name: 'resume.txt', path: '/resume', icon: FileText }
+    { name: 'github.md', path: '/github', icon: GithubIcon },
+    { name: 'resume.txt', path: '/resume', icon: ResumeIcon }
   ];
 
   return (

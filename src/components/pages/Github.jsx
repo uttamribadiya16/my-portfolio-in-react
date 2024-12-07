@@ -1,44 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github as GithubIcon, Star, GitFork, Users, Book } from 'lucide-react';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export function Github() {
-  const repositories = [
-    {
-      name: 'awesome-project',
-      description: 'A collection of awesome things.',
-      language: 'TypeScript',
-      stars: 128,
-      forks: 45,
-      updated: '2024-03-15'
-    },
-    {
-      name: 'react-components',
-      description: 'A set of reusable React components.',
-      language: 'JavaScript',
-      stars: 89,
-      forks: 23,
-      updated: '2024-03-10'
-    },
-    {
-      name: 'utils-library',
-      description: 'Common utility functions for JavaScript projects.',
-      language: 'JavaScript',
-      stars: 67,
-      forks: 12,
-      updated: '2024-03-05'
-    }
-  ];
+  const [stats, setStats] = useState([]);
+  const [repositories, setRepositories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { currentTheme } = useTheme();
 
-  const stats = [
-    { icon: Book, label: 'Repositories', value: '25' },
-    { icon: Star, label: 'Stars', value: '284' },
-    { icon: GitFork, label: 'Forks', value: '80' },
-    { icon: Users, label: 'Followers', value: '156' }
-  ];
+  const GITHUB_USERNAME = 'uttamribadiya16'; // Replace with your GitHub username
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const headers = {
+          Authorization: `Bearer `,
+        };
+
+        // Fetch User Data
+        const userRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`, { headers });
+        const userData = await userRes.json();
+
+        // Fetch Repositories
+        const repoRes = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=5`,
+          { headers }
+        );
+        const repoData = await repoRes.json();
+
+        setStats([
+          { icon: Book, label: 'Repositories', value: userData.public_repos },
+          { icon: Star, label: 'Stars', value: repoData.reduce((sum, repo) => sum + repo.stargazers_count, 0) },
+          { icon: GitFork, label: 'Forks', value: repoData.reduce((sum, repo) => sum + repo.forks_count, 0) },
+          { icon: Users, label: 'Followers', value: userData.followers },
+        ]);
+
+        setRepositories(repoData.slice(0, 5));
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch GitHub data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center text-white">Loading...</div>;
+  }
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -61,7 +75,11 @@ export function Github() {
               className="bg-[#2d2d2d] p-4 rounded-lg"
             >
               <div className="flex items-center space-x-2 mb-2">
-                <Icon className="w-5 h-5 text-blue-400" />
+                <Icon
+                style={{ 
+                  color: currentTheme.colors.accent
+                }}
+                className="w-5 h-5" />
                 <span className="text-gray-400">{stat.label}</span>
               </div>
               <span className="text-2xl font-bold text-white">{stat.value}</span>
@@ -81,8 +99,12 @@ export function Github() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-xl font-semibold text-blue-400 mb-2">{repo.name}</h3>
-                <p className="text-gray-300 mb-4">{repo.description}</p>
+                <h3 
+                style={{ 
+                  color: currentTheme.colors.accent
+                }}
+                className="text-xl font-semibold mb-2">{repo.name}</h3>
+                <p className="text-gray-300 mb-4">{repo.description || 'No description provided.'}</p>
               </div>
               <button className="px-3 py-1 text-sm border border-gray-600 rounded-md hover:bg-[#363636] transition-colors">
                 Star
@@ -95,13 +117,13 @@ export function Github() {
               </span>
               <span className="flex items-center space-x-1">
                 <Star className="w-4 h-4" />
-                <span>{repo.stars}</span>
+                <span>{repo.stargazers_count}</span>
               </span>
               <span className="flex items-center space-x-1">
                 <GitFork className="w-4 h-4" />
-                <span>{repo.forks}</span>
+                <span>{repo.forks_count}</span>
               </span>
-              <span>Updated on {repo.updated}</span>
+              <span>Updated on {new Date(repo.updated_at).toLocaleDateString()}</span>
             </div>
           </motion.div>
         ))}
