@@ -1,21 +1,12 @@
 [build]
-  # The base directory for your project, defaults to the root of the repository
   base = "/"
-  
-  # The directory where the production build is output
   publish = "dist"
-
-  # The directory containing your build files (defaults to /)
-  # Netlify will run the build command within this folder
   functions = "functions"
-
-  # Command to build the app (e.g., React project)
   command = "npm run build"
 
-[redirects]
-  # Handle React Router client-side routes (without it, refreshing on non-root routes like /home will result in a 404)
-  [[redirects]]
-    from = "/*"
-    to = "/index.html"
-    status = 200
-    force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
