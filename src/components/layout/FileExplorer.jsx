@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronRight, FileText, Github } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronLeft, FileText, Github } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
 
@@ -57,6 +57,7 @@ export function FileExplorer() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isPortfolioExpanded, setIsPortfolioExpanded] = useState(true);
   const { currentTheme } = useTheme();
+  const [isExplorerOpen, setIsExplorerOpen] = useState(false);
 
   const files = [
     { name: 'home.jsx', path: '/home', icon: FileReactIcon },
@@ -68,11 +69,27 @@ export function FileExplorer() {
   ];
 
   return (
+    
     <div 
       className="w-60 overflow-y-auto"
-      style={{ backgroundColor: currentTheme.colors.sidebarBackground }}
-    >
-      <div className="p-2" style={{ color: currentTheme.colors.sidebarForeground }}>
+      style={{ 
+        backgroundColor: currentTheme.colors.sidebarBackground,
+        width: !isExplorerOpen ? '50px' : ''
+       }}
+    >     
+
+      { !isExplorerOpen && <button
+            onClick={() => setIsExplorerOpen(!isExplorerOpen)}
+            className="ml-2 mt-2 w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors"
+          >
+            {isExplorerOpen ? (
+              <ChevronLeft className="h-4 w-4" />
+            ) : (
+              <ChevronRight className="h-4 w-4" />
+            )}
+          </button>
+      }
+      {isExplorerOpen && <div className="p-2" style={{ color: currentTheme.colors.sidebarForeground }}>
         <div 
           className="flex items-center justify-between p-1 rounded cursor-pointer select-none"
           style={{ 
@@ -88,6 +105,16 @@ export function FileExplorer() {
             )}
             <span className="text-[11px] uppercase tracking-wider font-medium">Explorer</span>
           </div>
+          <button
+            onClick={() => setIsExplorerOpen(!isExplorerOpen)}
+            className="ml-auto w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors"
+          >
+            {isExplorerOpen ? (
+              <ChevronLeft className="h-4 w-4" />
+            ) : (
+              <ChevronRight className="h-4 w-4" />
+            )}
+          </button>
         </div>
         {isExpanded && (
           <div className="mt-2">
@@ -127,7 +154,7 @@ export function FileExplorer() {
             </div>
           </div>
         )}
-      </div>
+      </div>}
     </div>
   );
 }
