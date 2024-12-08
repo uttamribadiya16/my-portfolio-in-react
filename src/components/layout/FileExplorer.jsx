@@ -57,6 +57,7 @@ export function FileExplorer() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isPortfolioExpanded, setIsPortfolioExpanded] = useState(true);
   const { currentTheme } = useTheme();
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
   const [isExplorerOpen, setIsExplorerOpen] = useState(() => {
     // Check if the window width matches mobile view
     return !window.matchMedia("(max-width: 768px)").matches;
@@ -74,7 +75,6 @@ export function FileExplorer() {
   useEffect(() => {
     const handleResize = () => {
       // Update state dynamically if needed
-      const isMobile = window.matchMedia("(max-width: 768px)").matches;
       setIsExplorerOpen(!isMobile);
     };
 
@@ -91,7 +91,7 @@ export function FileExplorer() {
       className="w-60 overflow-y-auto"
       style={{ 
         backgroundColor: currentTheme.colors.sidebarBackground,
-        width: !isExplorerOpen ? '50px' : ''
+        width: !isExplorerOpen ? '50px' : (isMobile ? '90%' : '')
        }}
     >     
 
