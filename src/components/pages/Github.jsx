@@ -16,7 +16,7 @@ export function Github() {
     const fetchData = async () => {
       try {      
         const headers = {
-          Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
+          Authorization: `Bearer ${GITHUB_TOKEN}`,
         };
 
         // Fetch User Data
