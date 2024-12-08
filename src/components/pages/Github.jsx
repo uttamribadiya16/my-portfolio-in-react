@@ -99,12 +99,15 @@ export function Github() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <h3 
-                style={{ 
-                  color: currentTheme.colors.accent
-                }}
-                className="text-xl font-semibold mb-2">{repo.name}</h3>
-                <p className="text-gray-300 mb-4">{repo.description || 'No description provided.'}</p>
+                <h3
+                  style={{ color: currentTheme.colors.accent }}
+                  className="text-xl font-semibold mb-2"
+                >
+                  {repo.name}
+                </h3>
+                <p className="text-gray-300 mb-4">
+                  {repo.description || 'No description provided.'}
+                </p>
               </div>
               <button className="px-3 py-1 text-sm border border-gray-600 rounded-md hover:bg-[#363636] transition-colors">
                 Star
@@ -123,9 +126,11 @@ export function Github() {
                 <GitFork className="w-4 h-4" />
                 <span>{repo.forks_count}</span>
               </span>
-              <span>Updated on {new Date(repo.updated_at).toLocaleDateString()}</span>
             </div>
-          </motion.div>
+            <div className="text-sm text-gray-400 mt-2">
+              Updated on {new Date(repo.updated_at).toLocaleDateString()}
+            </div>
+          </motion.div>       
         ))}
       </div>
     </motion.div>
