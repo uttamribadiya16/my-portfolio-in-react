@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronRight, ChevronLeft, FileText, Github } from 'lucide-react';
 import { useLocation, Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -57,7 +57,10 @@ export function FileExplorer() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isPortfolioExpanded, setIsPortfolioExpanded] = useState(true);
   const { currentTheme } = useTheme();
-  const [isExplorerOpen, setIsExplorerOpen] = useState(false);
+  const [isExplorerOpen, setIsExplorerOpen] = useState(() => {
+    // Check if the window width matches mobile view
+    return !window.matchMedia("(max-width: 768px)").matches;
+  });
 
   const files = [
     { name: 'home.jsx', path: '/home', icon: FileReactIcon },
@@ -67,6 +70,20 @@ export function FileExplorer() {
     { name: 'github.md', path: '/github', icon: GithubIcon },
     { name: 'resume.txt', path: '/resume', icon: ResumeIcon }
   ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      // Update state dynamically if needed
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      setIsExplorerOpen(!isMobile);
+    };
+
+    // Listen for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     
@@ -79,7 +96,7 @@ export function FileExplorer() {
     >     
 
       { !isExplorerOpen && <button
-            onClick={() => setIsExplorerOpen(!isExplorerOpen)}
+            onClick={() => setIsExplorerOpen((prev) => !prev)}
             className="ml-2 mt-2 w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors"
           >
             {isExplorerOpen ? (
@@ -90,12 +107,12 @@ export function FileExplorer() {
           </button>
       }
       {isExplorerOpen && <div className="p-2" style={{ color: currentTheme.colors.sidebarForeground }}>
-        <div 
+        <div
           className="flex items-center justify-between p-1 rounded cursor-pointer select-none"
-          style={{ 
+          style={{
             '&:hover': { backgroundColor: currentTheme.colors.tabActiveBackground }
           }}
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={() => setIsExpanded((prev) => !prev)} // Parent onClick
         >
           <div className="flex items-center space-x-1">
             {isExpanded ? (
@@ -106,7 +123,10 @@ export function FileExplorer() {
             <span className="text-[11px] uppercase tracking-wider font-medium">Explorer</span>
           </div>
           <button
-            onClick={() => setIsExplorerOpen(!isExplorerOpen)}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent the click event from bubbling to the parent
+              setIsExplorerOpen((prev) => !prev);
+            }}
             className="ml-auto w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 transition-colors"
           >
             {isExplorerOpen ? (
@@ -119,7 +139,7 @@ export function FileExplorer() {
         {isExpanded && (
           <div className="mt-2">
             <div className="flex items-center space-x-1 p-1 rounded cursor-pointer"
-            onClick={() => setIsPortfolioExpanded(!isPortfolioExpanded)}
+            onClick={() => setIsPortfolioExpanded((prev) => !prev)}
             >
               {isPortfolioExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
               <span className="text-[11px] uppercase tracking-wider">Portfolio</span>

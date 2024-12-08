@@ -1,6 +1,7 @@
 import React from 'react';
 import { Code } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
+import VSCodeIcon from './VSCodeIcon';
 
 export function MenuBar() {
   const menuItems = ['File', 'Edit', 'View', 'Go', 'Run', 'Terminal', 'Help'];
@@ -16,7 +17,8 @@ export function MenuBar() {
       }}
     >
       <div className="flex items-center px-2 space-x-2">
-        <Code className="h-4 w-4" style={{ color: currentTheme.colors.accent }} />
+      <VSCodeIcon className="h-4 w-4 ml-2" color={ currentTheme.colors.accent } />
+        {/* <Code className="h-4 w-4" style={{ color: currentTheme.colors.accent }} /> */}
         {menuItems.map((item) => (
           <button
             key={item}

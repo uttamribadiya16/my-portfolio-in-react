@@ -16,12 +16,14 @@ import { Profile } from './components/pages/Profile';
 import { Github } from './components/pages/Github';
 import { ManageThemes } from './components/pages/ManageThemes';
 import { Resume } from './components/pages/Resume';
+import { Favicon } from "./components/layout/Favicon";
 
 export default function App() {
   return (
     <ThemeProvider>
       <Router>
         <div className="flex flex-col h-screen theme-bg-primary">
+        <Favicon /> {/* Render the Favicon component */}
           <MenuBar />
           <TopBar />
           <div className="flex flex-1 overflow-hidden">

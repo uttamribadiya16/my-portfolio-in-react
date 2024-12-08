@@ -66,41 +66,45 @@ export function Tabs() {
   ];
 
   return (
-    <div 
-      className="flex items-center"
+    <div
+      className="flex items-center overflow-x-auto whitespace-nowrap"
       style={{ backgroundColor: currentTheme.colors.background }}
     >
       {tabs.map((tab) => {
         const Icon = tab.icon;
         const isActive = location.pathname === tab.path;
-        
+  
         return (
           <Link
             key={tab.path}
             to={tab.path}
-            className="group flex items-center h-[34px] border-t border-transparent"
+            className="group flex items-center h-[40px] sm:h-[34px] border-t border-transparent px-3 flex-shrink-0"
             style={{
-              backgroundColor: isActive ? currentTheme.colors.tabActiveBackground : currentTheme.colors.tabInactiveBackground,
-              color: isActive ? currentTheme.colors.foreground : currentTheme.colors.sidebarForeground,
-              borderTopColor: isActive ? currentTheme.colors.accent : 'transparent'
+              backgroundColor: isActive
+                ? currentTheme.colors.tabActiveBackground
+                : currentTheme.colors.tabInactiveBackground,
+              color: isActive
+                ? currentTheme.colors.foreground
+                : currentTheme.colors.sidebarForeground,
+              borderTopColor: isActive ? currentTheme.colors.accent : "transparent",
             }}
           >
-            <div className="flex items-center space-x-2 px-3">
-              <Icon className="h-4 w-4" />
-              <span className="text-xs">{tab.name}</span>
+            <div className="flex items-center space-x-2">
+              <Icon className="h-5 w-5 sm:h-4 sm:w-4" />
+              <span className="text-sm sm:text-xs">{tab.name}</span>
             </div>
-            <button 
+            <button
               className="opacity-0 group-hover:opacity-100 rounded p-0.5 mr-1"
               style={{
-                '&:hover': {
-                  backgroundColor: currentTheme.colors.tabActiveBackground
-                }
+                backgroundColor: isActive
+                  ? currentTheme.colors.tabActiveBackground
+                  : "transparent",
               }}
-            >
-            </button>
+            ></button>
           </Link>
         );
       })}
     </div>
   );
+  
 }
