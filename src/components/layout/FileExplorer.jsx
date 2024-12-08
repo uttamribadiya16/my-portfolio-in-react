@@ -55,6 +55,7 @@ const ResumeIcon = () => (
 export function FileExplorer() {
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState(true);
+  const [isPortfolioExpanded, setIsPortfolioExpanded] = useState(true);
   const { currentTheme } = useTheme();
 
   const files = [
@@ -90,8 +91,10 @@ export function FileExplorer() {
         </div>
         {isExpanded && (
           <div className="mt-2">
-            <div className="flex items-center space-x-1 p-1 rounded cursor-pointer">
-              <ChevronDown className="h-4 w-4" />
+            <div className="flex items-center space-x-1 p-1 rounded cursor-pointer"
+            onClick={() => setIsPortfolioExpanded(!isPortfolioExpanded)}
+            >
+              {isPortfolioExpanded ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
               <span className="text-[11px] uppercase tracking-wider">Portfolio</span>
             </div>
             <div className="ml-4 mt-1 space-y-1">
@@ -115,7 +118,7 @@ export function FileExplorer() {
                   </div>
                 );
 
-                return (
+                return isPortfolioExpanded && (
                   <Link key={file.name} to={file.path} className="block">
                     {content}
                   </Link>

@@ -8,7 +8,7 @@ export function Sidebar() {
   
   return (
     <div 
-      className="w-12 flex flex-col items-center py-4"
+      className="w-12 flex flex-col items-center py-4 border-r border-gray-800"
       style={{ backgroundColor: currentTheme.colors.sidebarBackground }}
     >
       <div className="flex-1 flex flex-col space-y-4">
