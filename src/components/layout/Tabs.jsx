@@ -62,7 +62,7 @@ export function Tabs() {
     { name: 'contact.css', path: '/contact', icon: FileCssIcon },
     { name: 'projects.js', path: '/projects', icon: FileJsIcon },
     { name: 'github.md', path: '/github', icon: GithubIcon },
-    { name: 'resume.txt', path: '/resume', icon: ResumeIcon }
+    //{ name: 'resume.txt', path: '/resume', icon: ResumeIcon }
   ];
 
   return (

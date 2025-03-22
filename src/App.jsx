@@ -23,7 +23,7 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <div className="flex flex-col h-screen theme-bg-primary">
-        <Favicon /> {/* Render the Favicon component */}
+          <Favicon /> {/* Render the Favicon component */}
           <MenuBar />
           <TopBar />
           <div className="flex flex-1 overflow-hidden">
@@ -41,7 +41,8 @@ export default function App() {
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/github" element={<Github />} />
                   <Route path="/themes" element={<ManageThemes />} />
-                  <Route path="/resume" element={<Resume />} />
+                  {/* <Route path="/resume" element={<Resume />} /> */}
+                  <Route path="*" element={<Navigate to="/home" replace />} />
                 </Routes>
               </MainContent>
             </div>

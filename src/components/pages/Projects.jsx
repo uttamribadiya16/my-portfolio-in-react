@@ -9,61 +9,37 @@ export function Projects() {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A robust e-commerce platform with features like payment integration and order tracking.",
-      details: `
-        This platform supports real-time inventory updates, user authentication, and role-based access control for admins and vendors.
-        It integrates multiple payment gateways, including Stripe and PayPal, for secure transactions. Advanced features include 
-        a recommendation engine for personalized product suggestions and dynamic pricing models based on user behavior.
-      `,
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      github: "https://github.com",
-      live: "https://example.com"
+      projectName: "Buy & Sell Used Cars – Carrier, Buyer, and Admin Portals",
+      technologies: "C#, .NET Framework, ASP.NET MVC, ASP.NET Core, SOAP/REST APIs, OData, Web Services, Microservices, GitHub, LINQ, Entity Framework, JavaScript, jQuery, RabbitMQ, Redis Cache, Microsoft SQL Server, ElasticSearch",
+      rolesAndResponsibilities: "Development, Unit Testing, Client Communication, Task Creation, Requirement Analysis, Code Review, Feature Analysis, Issue Resolution, and Team Lead.",
+      description: `
+        Developed Carrier, Buyer, and Admin portals for a used car marketplace. The Carrier portal allows carriers to manage vehicle pick-ups, deliveries, driver assignments, inspections, and seller payments. The Buyer portal enables buyers to browse available vehicles, make purchases, schedule deliveries, manage payments, and track orders. The Admin portal manages vendor payments, offer modifications, third-party communications, notifications, and user management.
+      `
     },
     {
-      title: "Healthcare Management System",
-      description: "A system to manage hospital data including patients, staff, and appointments.",
-      details: `
-        Designed for multi-hospital environments, this system offers modules for patient registration, appointment scheduling, 
-        staff management, and real-time health monitoring via connected IoT devices. It supports secure data sharing across 
-        departments and detailed analytics for hospital performance and patient outcomes.
-      `,
-      tags: [".NET Core", "SQL Server", "Angular", "Entity Framework"],
-      github: "https://github.com",
-      live: "https://example.com"
+      name: "Media Cogent - Advertising Management System",
+      technologies: "C#, .NET Framework, ASP.NET MVC, GitHub, LINQ, JavaScript, jQuery, ADO.NET, AngularJS, Microsoft SQL Server",
+      rolesAndResponsibilities: "Handled full-cycle development & testing, client communication, requirement analysis, feature evaluation, and translating business needs into technical solutions.",
+      description: `
+        Built an advertising management system for media agencies and advertisers, covering ad planning across TV, radio, print, cinema, and digital. Managed budgets, cost calculations, lifecycle tracking, and role-based access.
+      `
     },
     {
-      title: "Task Management App",
-      description: "Collaborative task management with kanban board and calendar integration.",
-      details: `
-        A productivity tool that includes features like team-based task assignments, deadline reminders, recurring tasks, and 
-        priority-based sorting. The application integrates with third-party calendar systems such as Google Calendar and Outlook 
-        for seamless synchronization. Real-time updates ensure that team members are always on the same page.
-      `,
-      tags: ["Angular", "TypeScript", "PostgreSQL"],
-      github: "https://github.com",
-      live: "https://example.com"
-    },
-    {
-      title: "Real-Time Stock Trading Platform",
-      description: "A secure stock trading app with real-time updates and advanced charting tools.",
-      details: `
-        This platform enables users to trade stocks in real-time with minimal latency. It offers advanced charting tools, including 
-        candlestick patterns, moving averages, and real-time data visualization. Other features include portfolio management, 
-        multi-currency support, secure user authentication, and integration with third-party financial APIs for market data.
-      `,
-      tags: ["Next.js", "GraphQL", ".NET Core", "Redis"],
-      github: "https://github.com",
-      live: "https://example.com"
+      name: "Project Demos Portal",
+      technologies: "AngularJS, Node.js, MongoDB",
+      rolesAndResponsibilities: "Designed and implemented the portal using UI Bakery, leveraging built-in components and actions. Generated Angular code and customized it as per project requirements.",
+      description: `
+        Developed a company-specific portal showcasing various projects, including details like technologies used, platforms, media (videos/images), and demo URLs.
+      `
     }
-  ];
+  ];  
   
 
   const openModal = (project) => setSelectedProject(project);
   const closeModal = () => setSelectedProject(null);
-
+  
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -87,24 +63,28 @@ export function Projects() {
               />
             </div>
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                {project.projectName || project.name}
+              </h3>
               <p className="text-gray-400 mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag, tagIndex) => (
-                  <span
-                    key={tagIndex}
-                    style={{ color: currentTheme.colors.accent }}
-                    className="px-3 py-1 bg-[#363636] text-sm rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {project.technologies
+                  ?.split(',')
+                  .map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      style={{ color: currentTheme.colors.accent }}
+                      className="px-3 py-1 bg-[#363636] text-sm rounded-full"
+                    >
+                      {tag.trim()}
+                    </span>
+                  ))}
               </div>
             </div>
           </motion.div>
         ))}
       </div>
-
+  
       {/* Modal */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
@@ -115,20 +95,16 @@ export function Projects() {
             >
               <X className="w-6 h-6" />
             </button>
-            <h2 className="text-2xl font-bold text-white mb-4">{selectedProject.title}</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">
+              {selectedProject.projectName || selectedProject.name}
+            </h2>
             <p className="text-gray-400 mb-4">{selectedProject.description}</p>
-            <p className="text-gray-300 mb-6">{selectedProject.details}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {selectedProject.tags.map((tag, tagIndex) => (
-                <span
-                  key={tagIndex}
-                  style={{ color: currentTheme.colors.accent }}
-                  className="px-3 py-1 bg-[#363636] text-sm rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <p className="text-gray-300 mb-4">
+              <strong>Roles & Responsibilities:</strong> {selectedProject.rolesAndResponsibilities}
+            </p>
+            <p className="text-gray-300 mb-6">
+              <strong>Technologies:</strong> {selectedProject.toolsAndTechnologies || selectedProject.technologies}
+            </p>
           </div>
         </div>
       )}
